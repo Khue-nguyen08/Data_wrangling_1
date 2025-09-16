@@ -1,21 +1,51 @@
 ---
-title: "Simple document"
-output: html_document
+title: "Data Import"
+output: github_document
 ---
 
-I'm an R Markdown document! 
-
-# Section 1
-
-Here's a **code chunk** that samples from 
-a _normal distribution_:
-
 ```{r}
-samp = rnorm(100)
-length(samp)
+library(tidyverse)
+library(readxl)
+library(haven)
 ```
 
-# Section 2
+Let's import a dataset
+```{r}
+litters_df = 
+  read_csv("data/FAS_litters.csv")
+```
+```{r}
+pup_df = 
+  read_csv (
+    "data/FAS_pups.csv", 
+    skip = 3,
+    na = c ("NA", ".", "")
+  )
+getwd()
+```
+```{r}
+mlb_df =
+   read_excel("data/mlb11.xlsx")
+```
 
-I can take the mean of the sample, too!
-The mean is `r mean(samp)`.
+Import LotR word counts
+```{r}
+fortr_df =
+  read_excel("data/LotR_Words.xlsx", range = "B3:D6")
+
+
+```
+Import the PULSE 
+
+```{r}
+pulse_df = 
+  read_sas ("data/public_pulse_data.sas7bdat")
+```
+
+*What about data exporting 
+```{r}
+write_csv(pup_df, "pup.csv")
+```
+
+ 
+
